@@ -1,10 +1,11 @@
-import chunk from 'lodash.chunk'
-
 function sanitizeInput(input: string): number[] {
   return input.trim().split('\n').map(part => parseInt(part.trim(), 10))
 }
 
-function sum(nums: number[]): number {
+function sum(nums: number[] | undefined): number {
+  if (!nums) {
+    return 0
+  }
   return nums.reduce((total, part) => total + part)
 }
 
@@ -26,22 +27,27 @@ export function depthIncreases(input: string): number {
 export function depthIncreasesWindow(input: string, scale: number = 3): number {
   const depths = sanitizeInput(input)
 
-  const chunked = chunk(depths, scale).filter((part: number[]) => part && part.length === scale)
 
-  let numIncreases = 0
-  for (let i = 0; i < chunked.length; i++) {
-    const chunk = chunked[i]
-    const next = chunked[i + 1]
+  let arrs = []
+  for (let i = 0; i < depths.length; i++) {
+    let temp = [depths[i]]
+    let nextWindow = i + scale
 
-    if (next) {
-      const chunkSum = sum(chunk)
-      const nextChunkSum = sum(next)
-  
-      if (nextChunkSum > chunkSum) {
-        numIncreases += 1
-      }
+    for (let j = i + 1; j < nextWindow; j++) {
+      temp.push(depths[j])
     }
+
+    arrs.push(temp)
   }
 
+  let numIncreases = 0
+  for (let i = 0; i < arrs.length; i++) {
+    const cur = sum(arrs[i])
+    const next = sum(arrs[i + 1])
+
+    if (cur < next) {
+      numIncreases += 1
+    }
+  }
   return numIncreases
 }
