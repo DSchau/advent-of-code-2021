@@ -1,13 +1,13 @@
-export default {
-  one: `
+export const one = `
 forward 5
 down 5
 forward 8
 up 3
 down 8
 forward 2
-  `,
-  two: `
+`
+
+export const two = `
 forward 9
 down 8
 down 2
@@ -1008,5 +1008,4 @@ down 3
 forward 8
 down 5
 forward 6
-  `
-}
+`
