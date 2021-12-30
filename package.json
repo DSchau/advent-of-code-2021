@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "coverage": "vitest --coverage"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.5",
+    "@types/pretty-format": "^24.3.0",
+    "typescript": "^4.5.4",
+    "vite": "^2.7.9",
+    "vitest": "^0.0.118"
+  },
+  "dependencies": {
+    "lodash.chunk": "^4.2.0"
+  }
+}
