@@ -10,5 +10,5 @@
     "outDir": "dist",
     "baseUrl": "."
   },
-  "include": ["solutions/*"]
+  "include": ["solutions/*", "solutions/day-1/day-1.ts"]
 }
